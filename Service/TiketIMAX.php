@@ -9,4 +9,14 @@ class TiketIMAX extends Tiket {
         $this->kacamata_3d_id = $kacamata_3d_id;
         $this->efek_gerak_fitur = $efek_gerak_fitur;
     }
+
+    public function hitungTotalHarga()
+    {
+        return ($this->harga_dasar_tiket * $this->jumlah_kursi) + 35000;
+    }
+
+    public function tampilkanInfoFasilitas()
+    {
+        return "Tiket IMAX dengan kacamata 3D ID: " . $this->kacamata_3d_id . " dan efek gerak fitur: " . $this->efek_gerak_fitur;
+    }
 }

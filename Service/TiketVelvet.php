@@ -10,4 +10,14 @@ class TiketVelvet extends Tiket {
         $this->bantal_selimut_pack = $bantal_selimut_pack;
         $this->layanan_butler = $layanan_butler;
     }
+
+    public function hitungTotalHarga()
+    {
+        return ($this->harga_dasar_tiket * $this->jumlah_kursi) * 1.50;
+    }
+
+    public function tampilkanInfoFasilitas()
+    {
+        return "Tiket Velvet dengan bantal selimut pack: " . $this->bantal_selimut_pack . " dan layanan butler: " . $this->layanan_butler;
+    }
 }
