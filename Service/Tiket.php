@@ -1,5 +1,7 @@
 <?php
-abstract class Tiket
+require_once __DIR__ . '/../Koneksi/Database.php';
+
+abstract class Tiket extends \Database
 {
     protected $id_tiket;
     protected $nama_film;
@@ -7,16 +9,24 @@ abstract class Tiket
     protected $jumlah_kursi;
     protected $harga_dasar_tiket;
 
-    public function __construct($id_tiket, $nama_film, $jadwal_tayang, $jumlah_kursi, $harga_dasar_tiket)
+    public function __construct()
     {
-        $this->id_tiket = $id_tiket;
-        $this->nama_film = $nama_film;
-        $this->jadwal_tayang = $jadwal_tayang;
-        $this->jumlah_kursi = $jumlah_kursi;
-        $this->harga_dasar_tiket = $harga_dasar_tiket;
+        parent::__construct();
     }
 
     public abstract function hitungTotalHarga();
 
     public abstract function tampilkanInfoFasilitas();
+
+    public function tampilDataTiket()
+    {
+        $sql = "SELECT * FROM tabel_tiket";
+        $hasil = $this->koneksi->query($sql);
+
+        if ($hasil->num_rows > 0) {
+            return $hasil->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return [];
+        }
+    }
 }
